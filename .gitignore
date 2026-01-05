@@ -1,0 +1,29 @@
+# Local .terraform directories
+**/.terraform/*
+
+# .tfstate files (CRITICAL: Never commit these)
+*.tfstate
+*.tfstate.*
+
+# Crash log files
+crash.log
+
+# Exclude sensitive .tfvars files
+# In a real project, you never commit these.
+# For learning, you might commit example.tfvars, but we ignore by default for safety.
+
+
+# Ignore override files (LocalStack overrides usually shouldn't clutter the main repo unless shared)
+# But since this is a LocalStack learning repo, we might actually want to share them if they are templates.
+# However, standard practice is to ignore overrides.
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Ignore the Lock File (User Request)
+# Note: HashiCorp recommends committing this in teams, but for solo learning/experiments it can be ignored.
+.terraform.lock.hcl
+
+# OS specific files
+.DS_Store
