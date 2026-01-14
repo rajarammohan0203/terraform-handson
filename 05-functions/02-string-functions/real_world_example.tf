@@ -2,22 +2,22 @@
 # STRING FUNCTIONS
 # ---------------------------------------------------------------------------------------------------------------------
 # Used to manipulate text. Very important for naming conventions and standardizing inputs.
-# Common functions: tolower(), toupper(), replace(), split(), concat()
+# Common functions: lower(), upper(), replace(), split(), concat()
 
 locals {
   # ---------------------------------------------------------------------------------------------------------------------
-  # EXAMPLE 1: TOLOWER (S3 Compliance)
+  # EXAMPLE 1: LOWER (S3 Compliance)
   # ---------------------------------------------------------------------------------------------------------------------
   # SCENARIO: S3 bucket names MUST be lowercase. Users might pass "MyProject".
   # If we don't fix it, Terraform apply will FAIL.
-  clean_bucket_name = tolower(var.project_name)
+  clean_bucket_name = lower(var.project_name)
 
   # ---------------------------------------------------------------------------------------------------------------------
-  # EXAMPLE 2: TOUPPER (Tagging Standards)
+  # EXAMPLE 2: UPPER (Tagging Standards)
   # ---------------------------------------------------------------------------------------------------------------------
   # SCENARIO: Your company policy requires Environment tags to be UPPERCASE (e.g., "DEV", "PROD").
   # Even if user passes "dev", we auto-fix it to "DEV".
-  env_tag = toupper(var.environment)
+  env_tag = upper(var.environment)
 
   # ---------------------------------------------------------------------------------------------------------------------
   # EXAMPLE 3: REPLACE (Sanitization)

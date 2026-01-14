@@ -4,8 +4,8 @@ Essential for **Naming Conventions**, **Tagging Standards**, and **Input Cleanin
 
 | Function    | Description                 | Example                    | Result       |
 | :---------- | :-------------------------- | :------------------------- | :----------- |
-| `tolower()` | Converts to lowercase       | `tolower("Hi")`            | `"hi"`       |
-| `toupper()` | Converts to uppercase       | `toupper("hi")`            | `"HI"`       |
+| `lower()`   | Converts to lowercase       | `lower("Hi")`              | `"hi"`       |
+| `upper()`   | Converts to uppercase       | `upper("hi")`              | `"HI"`       |
 | `replace()` | Replaces substrings         | `replace("a-b", "-", "_")` | `"a_b"`      |
 | `split()`   | Splits string into **LIST** | `split(",", "a,b")`        | `["a", "b"]` |
 | `concat()`  | Combines **LISTS**          | `concat(["a"], ["b"])`     | `["a", "b"]` |
@@ -14,10 +14,11 @@ Essential for **Naming Conventions**, **Tagging Standards**, and **Input Cleanin
 
 | Function        | Scenario           | Use Case                                                                          |
 | :-------------- | :----------------- | :-------------------------------------------------------------------------------- |
-| **`tolower()`** | **S3 Compliance**  | "User passed 'MyBucket'. S3 requires lowercase. We fix it to 'mybucket'."         |
-| **`toupper()`** | **Tagging Policy** | "Env tags must be 'DEV' or 'PROD'. User passed 'dev'. We fix it to 'DEV'."        |
+| **`lower()`**   | **S3 Compliance**  | "User passed 'MyBucket'. S3 requires lowercase. We fix it to 'mybucket'."         |
+| **`upper()`**   | **Tagging Policy** | "Env tags must be 'DEV' or 'PROD'. User passed 'dev'. We fix it to 'DEV'."        |
 | **`replace()`** | **Sanitization**   | "User passed 'My Project'. DNS names can't have spaces. We make it 'My-Project'." |
 | **`split()`**   | **Input Parsing**  | "Env vars come as strings ('10.1,10.2'). We need a list to use `count`."          |
+| **`concat()`**  | **Merging Lists**  | "User subnets + Default subnets. Merge them into one list for security groups."   |
 
 ## 🕹️ Test with Terraform Console (Interactive)
 
@@ -32,9 +33,9 @@ Essential for **Naming Conventions**, **Tagging Standards**, and **Input Cleanin
    **Test Case Conversion:**
 
    ```hcl
-   > tolower("MyBucketName")
+   > lower("MyBucketName")
    "mybucketname"
-   > toupper("production")
+   > upper("production")
    "PRODUCTION"
    ```
 
@@ -53,6 +54,17 @@ Essential for **Naming Conventions**, **Tagging Standards**, and **Input Cleanin
      "subnet-1",
      "subnet-2",
      "subnet-3",
+   ]
+   ```
+
+   **Test Merging Lists (Concat):**
+
+   ```hcl
+   > concat(["val1", "val2"], ["val3"])
+   [
+     "val1",
+     "val2",
+     "val3",
    ]
    ```
 
