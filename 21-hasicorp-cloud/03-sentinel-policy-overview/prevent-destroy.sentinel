@@ -1,0 +1,22 @@
+# This is a Basic Sentinel Policy
+# Language: Sentinel (NOT HCL, looks like Ruby/Python)
+
+# 1. Imports
+import "tfplan"
+
+# 2. Logic: Ensure no resources are being destroyed
+# We want to prevent accidental deletions in Production.
+
+# Get all resources marked for destruction
+resources_being_destroyed = filter tfplan.resource_changes as _, rc {
+    rc.change.actions contains "delete"
+}
+
+# 3. Rule
+main = rule {
+    length(resources_being_destroyed) == 0
+}
+
+# Explanation:
+# If 'resources_being_destroyed' list is NOT empty, the rule returns FALSE.
+# If the rule returns FALSE, the Policy Fails -> Terraform Apply is Blocked.

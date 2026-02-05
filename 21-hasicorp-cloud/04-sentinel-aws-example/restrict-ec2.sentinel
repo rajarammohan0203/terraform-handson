@@ -1,0 +1,23 @@
+# Enforce usage of cost-effective instance types
+import "tfplan/v2" as tfplan
+
+# Allowed types
+allowed_types = ["t2.micro", "t3.micro", "t3.small"]
+
+# Get all aws_instance resources
+ec2_instances = filter tfplan.resource_changes as _, rc {
+    rc.type is "aws_instance" and
+    (rc.change.actions contains "create" or rc.change.actions contains "update")
+}
+
+# Rule: Check if instance_type is in allowed_types
+instance_type_allowed = rule {
+    all ec2_instances as _, instance {
+        instance.change.after.instance_type in allowed_types
+    }
+}
+
+# Main Rule
+main = rule {
+    instance_type_allowed
+}
