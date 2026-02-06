@@ -11,6 +11,8 @@ Welcome to the ultimate Terraform learning repository. This project provides a s
 - **Best Practices**: Focuses on "The Right Way" (Modules, State Locking, Security, Declarative workflows).
 - **Deep Dives**: Goes beyond basics into `dynamic` blocks, `lifecycle` rules, state surgery, and HCP Terraform.
 
+> **💡 Pro Tip:** I always prefer starting by creating resources manually using the AWS Console. This helps build a clear understanding of how services work and how resources are configured. Once familiar with the setup, automating the same using Terraform becomes much easier, cleaner, and more reliable.
+
 ---
 
 ## 🏗️ Architecture
